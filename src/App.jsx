@@ -8,7 +8,9 @@ function App() {
 
   return (
     <>
-    <h1>Hello Wld</h1> 
+    <h1>Hello World from Feature Branch</h1>
+    <p>This is a feature update</p>
+    <button onClick={() => setCount(count + 1)}>Count: {count}</button>
     </>
   )
 }
