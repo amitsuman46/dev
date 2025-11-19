@@ -1,29 +1,44 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [message, setMessage] = useState('Conflicting Changes Made')
-  const [isActive, setIsActive] = useState(false)
+  const [count, setCount] = useState(10)
+  const [message, setMessage] = useState('Feature Branch - Major Changes')
+  const [isActive, setIsActive] = useState(true)
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
-    console.log('Component mounted with conflict changes')
+    console.log('Feature branch component initialized')
+    document.title = 'Feature Branch App'
     setIsActive(true)
   }, [])
 
+  const handleIncrement = useCallback(() => {
+    setCount(prev => prev + 5)
+  }, [])
+
+  const handleDecrement = useCallback(() => {
+    setCount(prev => prev - 5)
+  }, [])
+
   return (
-    <>
-    <h1>This is a Conflicting Version</h1>
-    <h2>Modified in Feature Branch</h2>
-    <p>This will cause merge conflicts</p>
+    <div className="app-container">
+    <h1>Feature Branch - Conflicting Changes</h1>
+    <h2>This will conflict with main branch</h2>
+    <h3>Version 2.0 - Feature Update</h3>
     <p>Status: {isActive ? 'Active' : 'Inactive'}</p>
+    <p>Current Count: {count}</p>
     <p>Message: {message}</p>
-    <button onClick={() => setCount(count + 1)}>Increment: {count}</button>
-    <button onClick={() => setCount(count - 1)}>Decrement: {count}</button>
-    <button onClick={() => setMessage('Changed in Feature Branch')}>Update Message</button>
-    </>
+    <p>Theme: {theme}</p>
+    <div className="button-group">
+      <button onClick={handleIncrement} className="btn-primary">Add 5: {count}</button>
+      <button onClick={handleDecrement} className="btn-secondary">Subtract 5: {count}</button>
+      <button onClick={() => setMessage('Updated from Feature')} className="btn-info">Update Message</button>
+      <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>Toggle Theme</button>
+    </div>
+    </div>
   )
 }
 

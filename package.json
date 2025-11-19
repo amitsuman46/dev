@@ -1,13 +1,16 @@
 {
   "name": "vite-project",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
+  "description": "Feature Branch - Conflicting Changes",
+  "author": "Feature Branch Team",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "vite --host",
+    "build": "vite build --mode production",
+    "lint": "eslint . --fix",
+    "preview": "vite preview --port 4173",
+    "start": "vite"
   },
   "dependencies": {
     "react": "^19.2.0",

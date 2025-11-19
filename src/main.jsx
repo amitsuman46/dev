@@ -3,8 +3,19 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+// Feature branch changes - this will conflict
+const rootElement = document.getElementById('root')
+if (!rootElement) {
+  throw new Error('Root element not found')
+}
+
+const root = createRoot(rootElement)
+
+root.render(
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+// Feature branch: Added error boundary setup
+console.log('Feature branch: App initialized')
